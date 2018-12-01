@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>
+    <script src="{% static 'js/jquery-slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <style media="screen">
+      #usernameP{
+        color: white;
+        font-size: 18px;
+        margin-right: 20px;
+        margin-top:5px;
+      }
+    </style>
+
+
+    <title>crear producto Unimonito</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/unimonito/home">Unimonito</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="franquicias">Franquicias</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="usuarios">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="productos/crearProducto">Productos</a>
+            </li>
+            <li class="nav-item">
+              {% if franquicia%}
+              <select>
+                <option value="{{  franquicia.Nombre }}">{{franquicia.Nombre}}</option>
+              </select>                          
+              {% endif %}
+            </li>
+          </ul>
+            <ul class="navbar-nav ">
+              <li>
+              <p id="usernameP">Bienveido {{username}}</p>
+              </li>
+              <li class="nav-item">
+              <a class="btn btn-primary" href="LogOut" role="button">Log Out</a>
+              </li>
+            </ul>
+        </div>
+      </nav>
+    </header>
+<br>
+<br>
+<br>
+    <main role="main">
+     <div class="container">
+         <h1>Crear Producto</h1>
+         <br>
+          <br>
+          <br>
+          <form method="post" action="crearProducto">
+            <div class="form-row">
+              {% csrf_token %}
+              <div class="form-group col-md-4">
+                {{addProducto.nombre_Producto}}
+              </div>
+              <div class="form-group col-md-4">
+                {{addProducto.fecha_compra}}
+              </div>
+              <div class="form-group col-md-4">
+                {{addProducto.fecha_consumo}}
+              </div>
+              <div class="form-group col-md-4">
+                {{addProducto.observacion}}
+              </div>
+              <div class="form-group col-md-4">
+                {{addProducto.precio_consumo}}
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-5">
+              </div>
+              <div class="form-group col-md-2">
+                <button type="submit" class="btn btn-primary form-control">Agregar Producto</button>
+              </div>
+              <div class="form-group col-md-5">
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+           <div class="row">
+             <div class="col-6 col-md text-center">
+               <h5>Documentacion</h5>
+               <ul class="list-unstyled text-small">
+                 <li><a class="text-muted" href="#">Diagramas</a></li>
+                 <li><a class="text-muted" href="#">Fragmentaciones</a></li>
+                 <li><a class="text-muted" href="#">Procesos</a></li>
+               </ul>
+             </div>
+           <div class="col-12 col-md text-center">
+             <small class="d-block mb-3 text-muted">&copy; Sebastian Urrea & Johan Sanchez</small>
+           </div>
+         </footer>
+      </div> <!-- /container -->
+    </main>
+    <script type="text/javascript">
+        function showModal() {
+            $("#myModal").modal('show');
+        }
+        function reloadPag() {
+            location.href = "/CsTool/cstool/Content/Construrama/Pagos.aspx";
+        }
+    </script>
+  </body>
+</html>
